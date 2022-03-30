@@ -34,7 +34,7 @@
             </div>
             <button class="btn btn-primary btn-block" tabindex="4">Logi sisse</button>
         </form>
-        <p class="text-center mt-2"><span>Sul ei ole veel kontot?</span><a href="/signup"><span>&nbsp;Loo konto</span></a></p>
+        <p class="text-center mt-2"><span>Sul ei ole veel kontot?</span><a href="{{ route("signup") }}"><span>&nbsp;Loo konto</span></a></p>
     </div>
 </div>
 <!-- /Login-->

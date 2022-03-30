@@ -1,0 +1,81 @@
+/*================================================================================
+	Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
+	Version: 2.0
+	Author: PIXINVENT
+	Author URL: http://www.themeforest.net/user/pixinvent
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+
+.btn-red {
+  background-color: #ac2625 !important;
+  border: 0; }
+  .btn-red:hover, .btn-red:focus {
+    background-color: #ac2625 !important;
+    box-shadow: 0 8px 25px -8px #ac2625 !important; }
+
+.btn-default {
+  border: 1px solid #333; }
+
+
+.logo-sub-text {
+  z-index: 900;
+  position: absolute;
+  top: 47px;
+  right: 78px;
+  font-size: 10px; }
+
+  .ui-cal-week .ui-cal-time:hover {
+    background-color:  #d1d3d8;
+}
+
+.btn-round {
+  width: 80%;
+  border-radius: 60px;
+  background-color: transparent;
+  border: 1px solid #7367F0; }
+  .btn-round:hover, .btn-round:focus {
+    background-color: #7367F0;
+    color: white; }
+
+
+
+
+.ui-cal-week .ui-cal-time:hover{
+	background: #ABF3B7;
+}
+
+.ui-cal .ui-cal-label-date p {
+  font-weight: 700 !important;
+  color: #fff !important;
+  text-shadow: none !important;
+  font-size: 1.2em;
+}
+
+.ui-cal .ui-cal-dateline {
+  background-color: #7367F0;
+}
+
+.ui-cal-week .ui-cal-dateline {
+  top: -7px;
+
+}
+
+.ui-cal-week .ui-cal-timeline .ui-cal-label-time p {
+  position: relative;
+  top: 5px;
+  margin: 0px;
+  padding: 0px;
+  color: #444;
+  text-align: right;
+  text-shadow: none !important;
+  }
+
+.tooltip-inner {
+    white-space:pre-wrap;
+}
+/*# sourceMappingURL=style.css.map */

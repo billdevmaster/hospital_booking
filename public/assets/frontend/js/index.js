@@ -396,13 +396,13 @@ Resource.prototype.planBooking = function(minutes) {
 	for(var sId in slots){
 		if(!slots.hasOwnProperty(sId)) continue;
 		var slot=slots[sId];
+		console.log($("#interval").val());
 		if(this.canFit(slot.place,Math.ceil(minutes/this.parent.parent.office.slot_length)+slot.place)){
 			if(slot.canBook()){
 				slot.addPlan({
 					slot_start:slot.place - (60 / $("#interval").val()),
 					slot_end:Math.ceil(minutes/this.parent.parent.office.slot_length)+slot.place - (60 / $("#interval").val())
 				});
-				
 			}
 		}
 	}

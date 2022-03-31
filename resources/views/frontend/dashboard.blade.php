@@ -1,6 +1,7 @@
 @extends('layouts.frontend.app')
 @section('content')
 @if ($location)
+<input type="hidden" id="interval" value="{{ $location->interval }}">
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-md-12">
@@ -130,7 +131,6 @@
         </div>
     </div>
     <div class="tab-pane" id="step2" data-validate="#step1">
-        
         <div class="row">
             <div class="col-xs-12 col-sm-12 graybg">
                 <div class="dateInfo">
@@ -220,7 +220,7 @@
 </div>
 </form>
 </div>
-<input type="hidden" id="interval" value="{{ $location->interval }}">
+
 <script type="text/html" id="day">
     <?php echo '{{=[[ ]]=}}';?>
 	<div class="day" data-resources="[[resources.length]]" data-activeResource="1">

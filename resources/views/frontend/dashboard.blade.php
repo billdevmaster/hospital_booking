@@ -220,6 +220,7 @@
 </div>
 </form>
 </div>
+<input type="hidden" id="interval" value="{{ $location->interval }}">
 <script type="text/html" id="day">
     <?php echo '{{=[[ ]]=}}';?>
 	<div class="day" data-resources="[[resources.length]]" data-activeResource="1">

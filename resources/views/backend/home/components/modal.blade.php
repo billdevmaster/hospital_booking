@@ -108,10 +108,11 @@
                         <div class="col-md-6 form-group">
                             <label for="start_time">Tüüp</label>
                             <select class="form-control mb-1" id="icon" name="type">
+                                <option value="red" @if ($order != null && $order->type == "red") selected @endif >Telefon</option>
                                 <option value="green" @if ($order != null && $order->type == "green") selected @endif >Kohal korduv</option>
                                 <option value="yellow" @if ($order != null && $order->type == "yellow") selected @endif >Online</option>
-                                <option value="red" @if ($order != null && $order->type == "red") selected @endif >Telefon</option>
                                 <option value="blue" @if ($order != null && $order->type == "blue") selected @endif >Kohal esmane</option>
+                                <option value="light-grey" @if ($order != null && $order->type == "light-grey") selected @endif >Puhkus</option>
                             </select>
                         </div>
                         <div class="col-md-6 form-group">

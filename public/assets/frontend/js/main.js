@@ -66,6 +66,8 @@
 
     $(".select2").select2();
 
+    $("#services-collapse").find("ul li:first-child input").trigger("click");
+
     // $( "#Bookings_birthday" ).datetimepicker({pickTime:false,format:"YYYY-MM-DD"});
     
 })(jQuery);

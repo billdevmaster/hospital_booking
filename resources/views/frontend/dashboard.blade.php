@@ -2,6 +2,7 @@
 @section('content')
 @if ($location)
 <input type="hidden" id="interval" value="{{ $location->interval }}">
+<input type="hidden" id="avaiable" value="true">
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-md-12">

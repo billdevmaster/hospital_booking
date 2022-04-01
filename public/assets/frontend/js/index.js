@@ -83,6 +83,17 @@ $(function () {
 			cache:false,
 			success: function (data) {
 				var data = JSON.parse(data);
+				if (!data.status) {
+					$("#avaiable").val(false);
+					$("#services-collapse").find("input[type=checkbox]").each(function() {
+						if ($(this).prop("checked")) {
+							$(this).trigger("click");
+						}
+					})
+					alert("Sorry, You can't book here");
+					return;
+				}
+				$("#avaiable").val(true);
 				var dayData=new Builder(data);
 				$('#slotChoose').data('builder',dayData);
 
@@ -396,7 +407,14 @@ Resource.prototype.planBooking = function(minutes) {
 	for(var sId in slots){
 		if(!slots.hasOwnProperty(sId)) continue;
 		var slot=slots[sId];
-		console.log($("#interval").val());
+		if ($("#avaiable").val() != "true") {
+			$("#services-collapse").find("input[type=checkbox]").each(function() {
+				if ($(this).prop("checked")) {
+					$(this).trigger("click");
+				}
+			})
+			return;
+		}
 		if(this.canFit(slot.place,Math.ceil(minutes/this.parent.parent.office.slot_length)+slot.place)){
 			if(slot.canBook()){
 				slot.addPlan({

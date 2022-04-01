@@ -244,7 +244,17 @@ class HomePageController extends Controller
 
     public function booking(Request $request) {
         $location = Locations::find($request['office']);
-        $ret_data = [];
+        $ret_data = ["status" => true];
+        // check the time is not over the three weeks after.
+        $date1 = date_create_from_format('Y-m-d', $request['start_date']);
+
+        //Create a date object out of today's date:
+        $date2 = date_create_from_format('Y-m-d', date('Y-m-d'));
+        $diff = (array) date_diff($date1, $date2);
+        if ($diff['d'] > 21) {
+            $ret_data['status'] = false;
+            return response(json_encode($ret_data));
+        }
         $ret_data['office'] = [];
         $ret_data['days'] = [];
         $ret_data['office']['allow_brn_max_time'] = '0';

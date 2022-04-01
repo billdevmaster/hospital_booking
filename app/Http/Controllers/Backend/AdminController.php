@@ -162,10 +162,6 @@ class AdminController extends Controller
                 ->where("id", "!=", $request->id)->first();
         }
 
-        // var_dump($request->datetime);
-        // var_dump(date("Y-m-d H:i:s", strtotime($request->datetime. ' + ' . $request->duration . ' minutes')));
-        // var_dump($order_already);
-        // return;
         if ($order_already != null) {
             // check that order_already exceed the range of working time.
             $end_time = date('Y-m-d H:i:s', strtotime($order_already->started_at. ' +' . $order_already->duration . ' minutes')); 

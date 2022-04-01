@@ -79,7 +79,7 @@
     <div class="content-body">
         <form class="form form-horizontal" style="margin-bottom: 15px;">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group row">
                         <div class="col-md-3 col-form-label">
                             <label for="location">Osakonnad</label>
@@ -93,7 +93,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 row">
+                <div class="col-md-3 row">
                     <div class="col-xs-8 col-md-8">
                         <input type="text" style="margin-bottom:10px" class="form-control" id="search_input" placeholder="Otsi nime järgi...." value="{{ $search_input }}">
                     </div>
@@ -101,7 +101,17 @@
                         <button type="button" style="margin-bottom:10px" class="btn btn-primary" id="search">Otsi</button>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <div class="form-group row">
+                        <div class="col-md-3 col-form-label">
+                            <label for="location">kuupäev</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" style="margin-bottom:10px" class="form-control date" value="{{ date("Y-m-d") }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
                     <button type="button" class="btn btn-primary" onclick="getOrder(0)">Lisa broneering</button>
                 </div>
             </div>
@@ -128,6 +138,12 @@
 <script>
     $(function() {
         $('.select2').select2();
+        $(".date").flatpickr({
+            dateFormat: 'Y-m-d'
+        });
+        $(".date").change(function() {
+            getCalendar($(this).val())
+        })
         var getCalendar = function(startDate = null) {
             var data = {current_location_id: {{ $current_location_id }}, search_input: '{{ $search_input }}'};
             if (startDate) {
@@ -139,6 +155,9 @@
                 data: data,
                 success: function(res) {
                     $("#orders").html(res)
+                    if (startDate)
+                        $(".date").val(startDate)
+                    
                 },
                 error: function(err) {
                     console.log(err);

@@ -28,10 +28,10 @@ class AdminController extends Controller
     public function getCalendar(Request $request) {
         $location = Locations::find($request->current_location_id);
         $colors = [
-            "green" => '#008000',
-            "yellow" => '#FFFF00',
-            "red" => '#FF0000',
-            "blue" => '#0000FF',
+            "green" => '#b1deb1',
+            "yellow" => '#ffff94',
+            "red" => '#fc7676',
+            "blue" => '#a1caf1',
             "light-grey" => '#d3d3d3',
         ];
         $start_date = $request->start_date ? $request->start_date : date("Y-m-d");

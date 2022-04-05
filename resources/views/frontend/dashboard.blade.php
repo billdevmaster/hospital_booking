@@ -174,7 +174,7 @@
                                 <option value="{{ $i }}">{{ $i }}</option>
                             @endfor
                         </select>
-                        <small class="help-block" data-bv-validator="notEmpty" data-bv-for="Bookings[birthday_month]" data-bv-result="NOT_VALIDATED" style="display: none;">Palun vali sünni kuu</small>
+                        <small class="help-block" data-bv-validator="notEmpty" data-bv-for="Bookings[birthday_month]" data-bv-result="NOT_VALIDATED" style="display: none;">Palun vali sünnikuu</small>
                     </div>
                     <div class="col-xs-12 col-md-4">
                     <label class="col-xs-12 col-md-12 control-label text-left " for="Birthday_month">Päev</label>

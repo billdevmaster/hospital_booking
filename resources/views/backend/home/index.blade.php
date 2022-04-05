@@ -27,7 +27,7 @@
 }
 @media(max-width: 768px) {
     #calendar{ 
-        top: 430px;
+        top: 530px;
     }
 }                    
 .ui-cal-week .ui-cal-dateline, .ui-cal .ui-cal-resourceline {

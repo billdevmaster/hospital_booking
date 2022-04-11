@@ -299,7 +299,7 @@ $(function() {
             cache: false,
             success: (res) => {
                 if (res.success) {
-                    window.location.reload();
+                    window.location.href = appUrl + '/admin?location_id=' + $("#location").val() + "&date=" + $(".date").val();
                 } else {
                     if (res.message) {
                         alert(res.message);
@@ -378,7 +378,7 @@ $(function() {
                 console.log(res)
                 res = JSON.parse(res);
                 if (res.success) {
-                    window.location.reload();
+                    window.location.href = appUrl + '/admin?location_id=' + $("#location").val() + "&date=" + $(".date").val();
                 } else {
                     alert("Something is wrong");
                 }

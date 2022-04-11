@@ -107,7 +107,7 @@
                             <label for="location">kuupäev</label>
                         </div>
                         <div class="col-md-9">
-                            <input type="text" style="margin-bottom:10px" class="form-control date" value="{{ date("Y-m-d") }}">
+                            <input type="text" style="margin-bottom:10px" class="form-control date" value="{{ $date }}" id="date">
                         </div>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
         $(".date").change(function() {
             getCalendar($(this).val())
         })
-        var getCalendar = function(startDate = null) {
+        var getCalendar = function(startDate = $(".date").val()) {
             var data = {current_location_id: {{ $current_location_id }}, search_input: '{{ $search_input }}'};
             if (startDate) {
                 data.start_date = startDate

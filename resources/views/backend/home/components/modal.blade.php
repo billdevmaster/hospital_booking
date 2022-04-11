@@ -150,9 +150,6 @@
                                 </select>
                             </div>
                         </div>
-                        {{-- <input type="text" id="birth_date" class="form-control flatpickr-date" placeholder="YYYY-MM-DD" value='@if ($order != null)
-                            {{ $order->birth_date }}
-                        @endif' name="birth_date" /> --}}
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="start_time">Email</label>
@@ -257,9 +254,6 @@ location_lasttimes = location_lasttimes.replace(/&quot;/g, '"');
 location_lasttimes_array = JSON.parse(location_lasttimes);
 services_array = [];
 $(function() {
-    $("#birth_date").flatpickr({
-        dateFormat: 'Y-m-d'
-    });
     $("#start_time").flatpickr({
         enableTime: true
     });

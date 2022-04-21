@@ -71,7 +71,11 @@ class AdminController extends Controller
             // $item['notes'] = "test";
             $data[] = (object)$item;
         }
-        return view('backend.home.components.calendar', compact("start_date", "pesuboxs", "data", "year", "location"))->render();
+        // get start time and end time.
+        $day = mktime(0, 0, 0, substr($start_date, 5, 2), substr($start_date, 8, 2), substr($start_date, 0, 4));
+        $start_time = $location[date("D", $day) . '_start'];
+        $end_time = $location[date("D", $day) . '_end'];
+        return view('backend.home.components.calendar', compact("start_date", "pesuboxs", "data", "year", "location", "start_time", "end_time"))->render();
     }
 
     public function editOrder(Request $request) {

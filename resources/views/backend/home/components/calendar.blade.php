@@ -23,7 +23,7 @@
             // allowremove		: true,
             // allownotesedit	: true,
             minheight		: 30,
-            daytimestart    : '08:00:00',
+            daytimestart    : '{{ $start_time }}',
             startdate       : '{{ $start_date }}',
             daystodisplay   : 1,
             eventselect : function( uid ){

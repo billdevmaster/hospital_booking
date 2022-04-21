@@ -176,7 +176,7 @@
         });
 
         $("#search").click(function() {
-            window.location.href = appUrl + '/admin?location_id=' + $("#location").val() + "&search_input=" + $("#search_input").val() + "&date=" + $("#date").val();
+            window.location.href = appUrl + '/admin?location_id=' + $("#location").val() + "&search_input=" + $("#search_input").val();
         })
     })
     var getOrder = function(uid, time=null, pesubox=null) {

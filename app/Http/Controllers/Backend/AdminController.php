@@ -23,6 +23,13 @@ class AdminController extends Controller
         $current_location_id = $request->location_id ? $request->location_id : (count($locations) > 0 != null ? $locations[0]->id : 0);
         $date = $request->date ? $request->date: date("Y-m-d");
         $search_input = $request->search_input ? $request->search_input : "";
+        $orderWithKeyword = Bookings::where("location_id", $current_location_id)->where(function($query1) use($request) {
+            $query1->where("first_name", "like", '%' . $request->search_input . '%');
+            $query1->orwhere("last_name", "like", '%' . $request->search_input . '%');
+        })->where("is_delete", 'N')->first();
+        if ($orderWithKeyword) {
+            $date = $orderWithKeyword->date;
+        }
         return view('backend.home.index', compact("menu", "locations", "current_location_id", "search_input", "date"));
     }
     
@@ -40,12 +47,21 @@ class AdminController extends Controller
         $end_date = date("Y-m-d", strtotime($start_date. ' + 3 days'));
         $pesuboxs = LocationPesuboxs::where("location_id", $request->current_location_id)->where("is_delete", 'N')->get();
         if ($request->search_input && $request->search_input != "") {
-            $orders = Bookings::where("location_id", $request->current_location_id)->where(function($query1) use($request) {
-                $query1->where("first_name", "like", '%' . $request->search_input . '%');
-                $query1->orwhere("last_name", "like", '%' . $request->search_input . '%');
-            })->whereBetween("date", [$start_date, $end_date])->where("is_delete", 'N')->get();
+            // $orderWithKeyword = Bookings::where("location_id", $request->current_location_id)->where(function($query1) use($request) {
+            //     $query1->where("first_name", "like", '%' . $request->search_input . '%');
+            //     $query1->orwhere("last_name", "like", '%' . $request->search_input . '%');
+            // })->where("is_delete", 'N')->first();
+            // if ($orderWithKeyword) {
+            //     $start_date = $orderWithKeyword->date;
+                $orders = Bookings::where("location_id", $request->current_location_id)->where(function($query1) use($request) {
+                    $query1->where("first_name", "like", '%' . $request->search_input . '%');
+                    $query1->orwhere("last_name", "like", '%' . $request->search_input . '%');
+                })->where("date", $start_date)->where("is_delete", 'N')->get();
+            // } else {
+            //     $orders = [];
+            // }
         } else {
-            $orders = Bookings::select(["bookings.*", "location_pesuboxs.is_delete"])->leftJoin("location_pesuboxs", "location_pesuboxs.id", "=", "bookings.pesubox_id")->where("bookings.location_id", $request->current_location_id)->whereBetween("bookings.date", [$start_date, $end_date])->where("bookings.is_delete", 'N')->where("location_pesuboxs.is_delete", "N")->get();
+            $orders = Bookings::select(["bookings.*", "location_pesuboxs.is_delete"])->leftJoin("location_pesuboxs", "location_pesuboxs.id", "=", "bookings.pesubox_id")->where("bookings.location_id", $request->current_location_id)->where("bookings.date", $start_date)->where("bookings.is_delete", 'N')->where("location_pesuboxs.is_delete", "N")->get();
         }
         $data = [];
         foreach($orders as $order) {

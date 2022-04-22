@@ -23,12 +23,14 @@ class AdminController extends Controller
         $current_location_id = $request->location_id ? $request->location_id : (count($locations) > 0 != null ? $locations[0]->id : 0);
         $date = $request->date ? $request->date: date("Y-m-d");
         $search_input = $request->search_input ? $request->search_input : "";
-        $orderWithKeyword = Bookings::where("location_id", $current_location_id)->where(function($query1) use($request) {
-            $query1->where("first_name", "like", '%' . $request->search_input . '%');
-            $query1->orwhere("last_name", "like", '%' . $request->search_input . '%');
-        })->where("is_delete", 'N')->first();
-        if ($orderWithKeyword) {
-            $date = $orderWithKeyword->date;
+        if ($search_input != "") {
+            $orderWithKeyword = Bookings::where("location_id", $current_location_id)->where(function($query1) use($request) {
+                $query1->where("first_name", "like", '%' . $request->search_input . '%');
+                $query1->orwhere("last_name", "like", '%' . $request->search_input . '%');
+            })->where("is_delete", 'N')->first();
+            if ($orderWithKeyword) {
+                $date = $orderWithKeyword->date;
+            }
         }
         return view('backend.home.index', compact("menu", "locations", "current_location_id", "search_input", "date"));
     }

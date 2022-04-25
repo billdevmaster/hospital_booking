@@ -96,7 +96,7 @@ class HomePageController extends Controller
             return redirect()->route('index', ["office" => $request->location_id]);
         }
         $location_list = Locations::where("is_delete", "N")->get();
-        $locations = Locations::first();
+        $locations = Locations::where("is_delete", "N")->first();
         $location_id = $request->office ? $request->office : $locations->id;
         $location = $this->getCurrentLocation($location_id);
         $location_services = $this->getLocationServices($location_id);

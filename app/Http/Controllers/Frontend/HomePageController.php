@@ -70,7 +70,7 @@ class HomePageController extends Controller
             $end_time = date('Y-m-d H:i:s', strtotime($booking->started_at. ' +' . $booking->duration . ' minutes'));
 
             if ($end_time > $booking->date . " " . $location_date_end_time) {
-                var_dump($day);
+                var_dump(substr($request->datetime, 0, 10));
                 var_dump($location);
                 return var_dump($end_time);
             }

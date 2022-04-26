@@ -20,7 +20,7 @@ class HomePageController extends Controller
     //
     public function index(Request $request) {
         if ($request->Bookings != NULL) {
-            $timestamp = strtotime(substr($request->datetime, 0, 10));
+            $timestamp = strtotime(substr($request['Bookings']['started_at'], 0, 10));
             $day = date('D', $timestamp);
             $location = Locations::find($request->location_id);
             $location_date_end_time = $location[$day . "_end"];
@@ -69,10 +69,10 @@ class HomePageController extends Controller
             $booking->started_at = $booking->date . " " . $booking->time;
             $end_time = date('Y-m-d H:i:s', strtotime($booking->started_at. ' +' . $booking->duration . ' minutes'));
 
+            var_dump(substr($request->datetime, 0, 10));
+            var_dump($location);
+            return var_dump($end_time);
             if ($end_time > $booking->date . " " . $location_date_end_time) {
-                var_dump(substr($request->datetime, 0, 10));
-                var_dump($location);
-                return var_dump($end_time);
             }
                 
                 // return redirect()->route('errorBooking', ["message" => "Your booking time is already booked"]);

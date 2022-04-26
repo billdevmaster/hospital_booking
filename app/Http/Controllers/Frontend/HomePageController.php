@@ -67,7 +67,8 @@ class HomePageController extends Controller
             $booking->time = substr($request['Bookings']['started_at'], 11, 5) . ":00";
             $booking->duration = $request['duration'];
             $booking->started_at = $booking->date . " " . $booking->time;
-            $end_time = date('Y-m-d H:i:s', strtotime($booking->started_at. ' +' . $booking->duration . ' minutes')); 
+            $end_time = date('Y-m-d H:i:s', strtotime($booking->started_at. ' +' . $booking->duration . ' minutes'));
+            print($end_time);
             if ($end_time > $booking->date . " " . $location_date_end_time)
                 return redirect()->route('errorBooking', ["message" => "Your booking time is already booked"]);
             $booking->save();

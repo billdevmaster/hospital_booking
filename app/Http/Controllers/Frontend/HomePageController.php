@@ -71,7 +71,7 @@ class HomePageController extends Controller
 
             if ($end_time > $booking->date . " " . $location_date_end_time) {
                 var_dump($day);
-                var_dump($location[$day . "_end"]);
+                var_dump($location);
                 return var_dump($end_time);
             }
                 

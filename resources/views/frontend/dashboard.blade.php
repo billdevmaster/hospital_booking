@@ -17,7 +17,7 @@
     <div class="row">
         @foreach ($location_list as $location)
         
-                <a class="btn btn-primary" href="{{ route('index') }}?office={{ $location->id }}">{{ $location->name }}</a>
+                <a class="btn btn-primary {{ $location->id == $location_id ? 'active' : '' }}" href="{{ route('index') }}?office={{ $location->id }}">{{ $location->name }}</a>
           
         @endforeach
     </div>

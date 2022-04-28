@@ -9,7 +9,7 @@
 <body>
     <h2 style="border-bottom: 1px solid">{{ $data['location_name'] }}</h2>
     <p>Tere.</p><br/>
-    <p>Olete broneerinud aja teenindusse: {{ $data['location_name'] }}</p><br/>
+    <p>Olete broneerinud teenuse: {{ $data['location_name'] }}</p><br/>
     <p>Broneerimise aeg: {{ $data['time'] }}</p>
     <p>Valitud teenused: {{ $data['service_name'] }}</p>
     <p>

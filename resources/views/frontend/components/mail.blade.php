@@ -27,5 +27,7 @@
     <a href="{{ env('APP_URL') }}/cancelBooking?id={{ $data['book_id'] }}">{{ env('APP_URL') }}/cancelBooking?id={{ $data['book_id'] }}</a>
     <br/><br/>
     <p>Täname!</p>
+    <p>Aadress: Mardi 3, Tallinn, </p>
+    <p>Telefon: 6665123</p>
 </body>
 </html>

@@ -248,12 +248,13 @@ class HomePageController extends Controller
         $location = Locations::find($request['office']);
         $ret_data = ["status" => true];
         // check the time is not over the three weeks after.
-        $date1 = date_create_from_format('Y-m-d', $request['start_date']);
+        $date1 = date_create($request['start_date']);
 
         //Create a date object out of today's date:
-        $date2 = date_create_from_format('Y-m-d', date('Y-m-d'));
+        $date2 = date_create(date('Y-m-d'));
         $diff = (array) date_diff($date1, $date2);
-        if ($diff['d'] > 28) {
+        
+        if ($diff['days'] > 28) {
             $ret_data['status'] = false;
             return response(json_encode($ret_data));
         }

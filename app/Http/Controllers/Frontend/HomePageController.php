@@ -168,7 +168,7 @@ class HomePageController extends Controller
                     $order_info['slot_duration'] = $order->duration * 1 / $location->interval;
                     $time_start = explode(':', $order->time);
                     $order_info['slot_start'] = ($time_start[0] * 1 * (60 / $location->interval)) + ($time_start[1] * 1 / $location->interval);
-                    $order_info['slot_end'] = $order_info['slot_start'] + ($order->duration / $location->interval) + 3 * (60 / $location->interval);
+                    $order_info['slot_end'] = $order_info['slot_start'] + ($order->duration / $location->interval);
                     $info['bookings_slots'][] = $order_info;
                 }
             }

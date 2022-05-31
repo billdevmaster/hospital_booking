@@ -168,6 +168,7 @@ class HomePageController extends Controller
                     $order_info['slot_duration'] = $order->duration * 1 / $location->interval;
                     $time_start = explode(':', $order->time);
                     $order_info['slot_start'] = ($time_start[0] * 1 * (60 / $location->interval)) + ($time_start[1] * 1 / $location->interval);
+                    
                     $order_info['slot_end'] = $order_info['slot_start'] + ($order->duration / $location->interval);
                     $info['bookings_slots'][] = $order_info;
                 }
@@ -262,7 +263,7 @@ class HomePageController extends Controller
         $ret_data['days'] = [];
         $ret_data['office']['allow_brn_max_time'] = '0';
         $ret_data['office']['allow_brn_min_time'] = '1';
-        $ret_data['office']['brn_min_time'] = '60';
+        $ret_data['office']['brn_min_time'] = '240';
         $ret_data['office']['slot_length'] = $location->interval;
         $day = [];
         $day['date'] = strtotime($request['start_date']) * 1 - 7200;

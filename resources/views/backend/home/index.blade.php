@@ -139,7 +139,10 @@
     $(function() {
         $('.select2').select2();
         $(".date").flatpickr({
-            dateFormat: 'Y-m-d'
+            dateFormat: 'Y-m-d',
+            "locale": {
+                "firstDayOfWeek": 1 // start week on Monday
+            }
         });
         $(".date").change(function() {
             getCalendar($(this).val())

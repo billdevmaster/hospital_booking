@@ -216,9 +216,9 @@
         <script>
             var appUrl = '{{ env('APP_URL') }}';
             $(function() {
-                setTimeout(() => {
-                    alert("Vastuvõtt tasuline vastavalt hinnakirjale!");
-                }, 1000);
+                // setTimeout(() => {
+                //     alert("Vastuvõtt tasuline vastavalt hinnakirjale!");
+                // }, 1000);
                 $.ajaxSetup({
                     headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

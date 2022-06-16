@@ -183,6 +183,7 @@
         })
     })
     var getOrder = function(uid, time=null, pesubox=null) {
+        console.log(pesubox)
         $.ajax({
             type: 'get',
             url: appUrl + "/admin/editOrder",

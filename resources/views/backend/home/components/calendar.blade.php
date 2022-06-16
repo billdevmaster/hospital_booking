@@ -36,7 +36,7 @@
         $("#calendar .ui-cal-wrapper .ui-cal-date .ui-cal-time").click(function() {
             var date = $(this).parent().attr("date");
             var time = $(this).attr("time");
-            var pesubox = $(this).parent().attr("resource");
+            var pesubox = $(this).parent().attr("resource").replace("@", "");
             getOrder(0, date + " " + time, pesubox);
         })
 

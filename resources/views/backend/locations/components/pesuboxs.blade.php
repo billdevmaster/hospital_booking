@@ -164,7 +164,8 @@
       })
     })
 
-    $("#save_location_pesubox").click(function() {
+    $("#save_location_pesubox").click(function(e) {
+      e.preventDefault();
       var formdata = new FormData($("#edit_pesubox_form")[0]);
       $.ajax({
         type: "post",

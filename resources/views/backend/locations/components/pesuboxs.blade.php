@@ -12,6 +12,7 @@
                 <th>Nimi</th>
                 <th>Kirjeldus</th>
                 <th>Staatus</th>
+                <th>kuvamise järjekord</th>
                 <th>Tegevused</th>
               </tr>
             </thead>
@@ -30,6 +31,9 @@
                       @endif />
                       <label class="custom-control-label" for="customSwitch{{ $location_pesubox->id }}"></label>
                     </div>
+                  </td>
+                  <td>
+                    {{ $location_pesubox->display_order }}
                   </td>
                   <td>
                     <div class="dropdown">

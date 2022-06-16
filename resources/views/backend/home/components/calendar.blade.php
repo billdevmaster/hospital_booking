@@ -11,9 +11,8 @@
         var data = @json($data);
         var resources = {};
         pesuboxs.map(box => {
-            resources[box.id] = box.name;
+            resources["@" + box.id] = box.name;
         })
-        
         $('#calendar').cal({
             resources : resources,
             // allowresize		: true,

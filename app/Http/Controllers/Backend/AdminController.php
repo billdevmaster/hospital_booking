@@ -47,7 +47,7 @@ class AdminController extends Controller
         $start_date = $request->start_date ? $request->start_date : date("Y-m-d");
         $year = date("M Y", strtotime($start_date));
         $end_date = date("Y-m-d", strtotime($start_date. ' + 3 days'));
-        $pesuboxs = LocationPesuboxs::where("location_id", $request->current_location_id)->where("is_delete", 'N')->orderBy("id", "ASC")->orderBy("display_order", "ASC")->get();
+        $pesuboxs = LocationPesuboxs::where("location_id", $request->current_location_id)->where("is_delete", 'N') ->orderByRaw("display_order ASC, id ASC")->get();
         if ($request->search_input && $request->search_input != "") {
             // $orderWithKeyword = Bookings::where("location_id", $request->current_location_id)->where(function($query1) use($request) {
             //     $query1->where("first_name", "like", '%' . $request->search_input . '%');
@@ -75,7 +75,7 @@ class AdminController extends Controller
             $endTime = strtotime("+" . $order->duration . " minutes", strtotime($item['begins']));
             $item['ends'] = $order->date . ' ' . date('H:i:s', $endTime);
             $item['color'] = $colors[$order->type];
-            $item['resource'] = $order->pesubox_id;
+            $item['resource'] = "@" . $order->pesubox_id;
             $item['title'] = substr($order->time, 0, 5) . " " . $order->first_name . " " . $order->last_name;
             $item['notes'] = "nimi: " . $order->first_name . " " . $order->last_name . "\n" . "sünnikuupäev: " . $order->birth_date . "\n" . "telefon: " . $order->phone . "\n" . "meili: " . $order->email . "\n" . "sõnum: " . $order->message;
             $item['notes'] .= "\n" . "teenuseid: ";

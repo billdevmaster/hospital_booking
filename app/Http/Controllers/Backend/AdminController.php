@@ -47,7 +47,7 @@ class AdminController extends Controller
         $start_date = $request->start_date ? $request->start_date : date("Y-m-d");
         $year = date("M Y", strtotime($start_date));
         $end_date = date("Y-m-d", strtotime($start_date. ' + 3 days'));
-        $pesuboxs = LocationPesuboxs::where("location_id", $request->current_location_id)->where("is_delete", 'N')->get();
+        $pesuboxs = LocationPesuboxs::where("location_id", $request->current_location_id)->where("is_delete", 'N')->orderBy("display_order", "ASC")->orderBy("id", "ASC")->get();
         if ($request->search_input && $request->search_input != "") {
             // $orderWithKeyword = Bookings::where("location_id", $request->current_location_id)->where(function($query1) use($request) {
             //     $query1->where("first_name", "like", '%' . $request->search_input . '%');

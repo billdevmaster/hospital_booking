@@ -81,6 +81,12 @@
                     <textarea class="form-control" type="text" placeholder="Kirjeldus" name="description"  id="description"></textarea>
                 </div>
               </div>
+              <div class="modal-body">
+                <div class="form-group">
+                    <label for="defaultInput">kuvamise järjekord</label>
+                    <input class="form-control" type="text" placeholder="input number" name="display_order" id="display_order">
+                </div>
+              </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-primary" id="save_location_pesubox">Salvesta</button>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Kustuta</button>
@@ -108,6 +114,7 @@
           $("#edit_pesubox_form #location_pesubox_id").val(res.data.id);
           $("#edit_pesubox_form input#name").val(res.data.name);
           $("#edit_pesubox_form #description").val(res.data.description);
+          $("#edit_pesubox_form #display_order").val(res.data.display_order);
         },
         error: (err) => {
           Swal.fire({

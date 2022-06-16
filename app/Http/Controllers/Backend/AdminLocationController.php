@@ -158,6 +158,7 @@ class AdminLocationController extends Controller
         }
         $location_pesubox->name = $request->name;
         $location_pesubox->description = $request->description;
+        $location_pesubox->display_order = $request->display_order;
         $location_pesubox->location_id = $request->location_id;
         $location_pesubox->save();
         return response(json_encode(['success' => true]));

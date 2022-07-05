@@ -50,8 +50,8 @@ class AdminController extends Controller
         $pesuboxs = LocationPesuboxs::where("location_id", $request->current_location_id)->where("is_delete", 'N') ->orderByRaw("display_order ASC, id ASC")->get();
         if ($request->search_input && $request->search_input != "") {
             // $orderWithKeyword = Bookings::where("location_id", $request->current_location_id)->where(function($query1) use($request) {
-            //     $query1->where("first_name", "like", '%' . $request->search_input . '%');
-            //     $query1->orwhere("last_name", "like", '%' . $request->search_input . '%');
+                //     $query1->where("first_name", "like", '%' . $request->search_input . '%');
+                //     $query1->orwhere("last_name", "like", '%' . $request->search_input . '%');
             // })->where("is_delete", 'N')->first();
             // if ($orderWithKeyword) {
             //     $start_date = $orderWithKeyword->date;
@@ -65,10 +65,10 @@ class AdminController extends Controller
         } else {
             $orders = Bookings::select(["bookings.*", "location_pesuboxs.is_delete"])->leftJoin("location_pesuboxs", "location_pesuboxs.id", "=", "bookings.pesubox_id")->where("bookings.location_id", $request->current_location_id)->where("bookings.date", $start_date)->where("bookings.is_delete", 'N')->where("location_pesuboxs.is_delete", "N")->get();
         }
+        
         $data = [];
         foreach($orders as $order) {
             // check pesubox is avaiable.
-
             $item = [];
             $item['uid'] = $order->id;
             $item['begins'] = $order->date . ' ' . $order->time;

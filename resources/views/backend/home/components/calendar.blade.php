@@ -13,25 +13,27 @@
         pesuboxs.map(box => {
             resources["@" + box.id] = box.name;
         })
-        $('#calendar').cal({
-            resources : resources,
-            // allowresize		: true,
-            // allowmove		: true,
-            allowselect		: true,
-            gridincrement: "{{ $location->interval }} mins",
-            // allowremove		: true,
-            // allownotesedit	: true,
-            minheight		: 30,
-            daytimestart    : '{{ $start_time }}',
-            startdate       : '{{ $start_date }}',
-            daystodisplay   : 1,
-            eventselect : function( uid ){
-                getOrder(uid)
-            },
-            // Load events as .ics
-            events : //'http://staff.digitalfusion.co.nz.local/time/calendar/leave/'
-            data
-        });
+        console.log(resources)
+        if (resources != {}) {
+            $('#calendar').cal({
+                resources : resources,
+                // allowresize		: true,
+                // allowmove		: true,
+                allowselect		: true,
+                gridincrement: "{{ $location->interval ? $location->interval : '30' }} mins",
+                // allowremove		: true,
+                // allownotesedit	: true,
+                minheight		: 30,
+                daytimestart    : '{{ $start_time }}',
+                startdate       : '{{ $start_date }}',
+                daystodisplay   : 1,
+                eventselect : function( uid ){
+                    getOrder(uid)
+                },
+                // Load events as .ics
+                events : data
+            });
+        }
 
         $("#calendar .ui-cal-wrapper .ui-cal-date .ui-cal-time").click(function() {
             var date = $(this).parent().attr("date");

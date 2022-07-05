@@ -6,7 +6,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-md-12">
-			<h1>Seksuaaltervise Kliinik</h1>
+			<h1>Demo Booking</h1>
 		</div>
 	</div>
     <div class="row">

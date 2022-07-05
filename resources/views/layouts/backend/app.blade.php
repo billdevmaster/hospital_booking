@@ -83,7 +83,7 @@
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item mr-auto">
                     <a class="navbar-brand" href="{{ route('index') }}">
-                        <h2 class="text-white text-bold">Seksuaaltervis</h2>
+                        <h2 class="text-white text-bold">Demo</h2>
                        
                     </a>
                 </li>

@@ -7,6 +7,7 @@
 	<div class="row">
 		<div class="col-xs-12 col-md-12">
 			<h1>Seksuaaltervise Kliinik</h1>
+            <h3>Mardi 3 Tallinn</h3>
 		</div>
 	</div>
     <div class="row">

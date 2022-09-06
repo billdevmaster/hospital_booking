@@ -42,7 +42,7 @@ class SendEmail extends Command
      */
     public function handle()
     {
-        // \Log::info("Cron is working fine!");
+        \Log::info("Cron is working fine!");
         $bookings_today = Bookings::where("date", date("Y-m-d"))->get();
         foreach($bookings_today as $booking) {
             if ($booking->email == NULL && $booking->email == "") {

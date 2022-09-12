@@ -104,6 +104,7 @@
                 </li>-->
                 <li class="nav-item @php if($menu == 'clients') echo 'active' @endphp"><a class="d-flex align-items-center" href="{{ route('admin.clients') }}"><i data-feather='list'></i><span class="menu-title text-truncate" data-i18n="Home">Kliendid</span></a>
                 </li>
+                <li class="nav-item @php if($menu == 'seaded') echo 'active' @endphp"><a class="d-flex align-items-center" href="{{ route('admin.seaded') }}"><i data-feather='user'></i><span class="menu-title text-truncate" data-i18n="Home">SEADED</span></a>
             </ul>
         </div>
     </div>

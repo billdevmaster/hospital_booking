@@ -87,6 +87,12 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/admin/clients', 'Backend\AdminClientsController@index')->name('admin.clients');
         Route::get('/admin/clients/get_list', 'Backend\AdminClientsController@get_list');
         // end clients
+
+        // seaded
+        Route::get('/admin/seaded', 'Backend\AdminSeadedController@index')->name('admin.seaded');
+        Route::post('/admin/seaded/saveNotificationEmail', 'Backend\AdminSeadedController@saveNotificationEmail');
+        Route::post('/admin/seaded/setNeedification', 'Backend\AdminSeadedController@setNeedification');
+        // end seaded
     });
 });
 

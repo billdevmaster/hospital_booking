@@ -28,7 +28,7 @@ class AdminSeadedController extends Controller
     public function setNeedification(Request $request) 
     {
         $user = User::find($request->id);
-        $user->need_notification = $request->needNotification ? 1 : 0;
+        $user->need_notification = $request->needNotification == 'true' ? 1 : 0;
         $user->save();
         return response(json_encode(['success' => true]));
     }

@@ -17,8 +17,8 @@
             </div>
         @endif
         <h3 style="text-align: center; margin-top: 150px">
-            Are you sure <br/>
-            you want to cancel your reservation?
+            Kas oled kindel,  <br/>
+            et soovid oma broneeringu tühistada?
         </h3>
         <form action="{{ route('cancelBooking') }}" method="POST">
             @csrf
@@ -26,11 +26,11 @@
             <div style="text-align: center; margin-top: 20px">
                 <label class="cancel_label">
                     <input type="checkbox" name="agree"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                    I agree</font></font>
+                        Tühista broneering</font></font>
                 </label>
             </div>
             <div style="text-align: center; margin-top: 20px">
-                <button class="btn">Cancel</button>
+                <button class="btn">Katkesta</button>
             </div>
         </form>
     </div>

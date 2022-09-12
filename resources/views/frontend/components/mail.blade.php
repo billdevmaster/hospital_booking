@@ -7,7 +7,6 @@
     <title>Mail</title>
 </head>
 <body>
-    <h2 style="border-bottom: 1px solid">{{ $data['location_name'] }}</h2>
     <p>Tere.</p><br/>
     <p>Olete broneerinud teenuse: {{ $data['location_name'] }}</p><br/>
     <p>Broneerimise aeg: {{ $data['time'] }}</p>

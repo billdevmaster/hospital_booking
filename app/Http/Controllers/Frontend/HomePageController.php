@@ -74,6 +74,7 @@ class HomePageController extends Controller
                 return redirect()->route('errorBooking', ["message" => "Your booking time is already booked"]);
             }
             $booking->save();
+            
 
             // send email
             $data = array(
@@ -102,8 +103,7 @@ class HomePageController extends Controller
                 Mail::to($user->notification_email)->send(new BookIdMail($email_data));
             }
             // end send email
-
-            return redirect()->route('index', ["office" => $request->location_id]);
+            return view("frontend.redirect");
         }
         $location_list = Locations::where("is_delete", "N")->get();
         $locations = Locations::where("is_delete", "N")->first();
@@ -307,7 +307,6 @@ class HomePageController extends Controller
     }
 
     public function cancelBookingView(Request $request) {
-        
         $book_id = $request->id;
         return view("frontend.cancelBooking", compact("book_id"));
     }

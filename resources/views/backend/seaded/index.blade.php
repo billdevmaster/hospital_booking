@@ -22,28 +22,28 @@
                 <div class="col-xl-12 col-lg-12 mt-2 mt-xl-0">
                     <div class="user-info-wrapper">
                         <div class="d-flex flex-wrap">
-                            <div class="user-info-title">
+                            <div class="user-info-title mr-50">
                                 <i data-feather="book" class="mr-1"></i>
                                 <span class="card-text user-info-title font-weight-bold mb-0">ettevõtte nimi</span>
                             </div>
                             <p class="card-text mb-0">{{ Auth::user()->company }}</p>
                         </div>
                         <div class="d-flex flex-wrap my-50">
-                            <div class="user-info-title">
+                            <div class="user-info-title mr-50">
                                 <i data-feather="user" class="mr-1"></i>
                                 <span class="card-text user-info-title font-weight-bold mb-0">Kasutajanimi</span>
                             </div>
                             <p class="card-text mb-0">{{ Auth::user()->name }}</p>
                         </div>
                         <div class="d-flex flex-wrap my-50">
-                            <div class="user-info-title">
+                            <div class="user-info-title mr-50">
                                 <i data-feather="mail" class="mr-1"></i>
                                 <span class="card-text user-info-title font-weight-bold mb-0">Email</span>
                             </div>
                             <p class="card-text mb-0">{{ Auth::user()->email }}</p>
                         </div>
                         <div class="d-flex flex-wrap my-50">
-                            <div class="user-info-title">
+                            <div class="user-info-title mr-50">
                                 <i data-feather="star" class="mr-1"></i>
                                 <span class="card-text user-info-title font-weight-bold mb-0">Roll</span>
                             </div>

@@ -13,6 +13,7 @@ use App\Models\Bookings;
 use App\Models\Services;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookIdMail;
+use App\Models\User;
 // use Illuminate\Support\Facades\Input;
 
 class HomePageController extends Controller
@@ -73,6 +74,7 @@ class HomePageController extends Controller
                 return redirect()->route('errorBooking', ["message" => "Your booking time is already booked"]);
             }
             $booking->save();
+
             // send email
             $data = array(
                 'name'=>$booking->first_name . " " . $booking->last_name,
@@ -95,6 +97,12 @@ class HomePageController extends Controller
             $email_data['book_id'] = $booking->id;
             
             Mail::to($booking->email)->send(new BookIdMail($email_data));
+            $admin_users = User::where("role", "A")->where("need_notification", 1)->get();
+            foreach($admin_users as $user) {
+                Mail::to($user->notification_email)->send(new BookIdMail($email_data));
+            }
+            // end send email
+
             return redirect()->route('index', ["office" => $request->location_id]);
         }
         $location_list = Locations::where("is_delete", "N")->get();

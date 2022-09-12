@@ -30,6 +30,6 @@ class BookIdMail extends Mailable
     public function build()
     {
         $data = $this->data;
-        return $this->subject('Here is my subject')->view('frontend.components.mail', compact("data"));
+        return $this->subject(env('APP_NAME'))->view('frontend.components.mail', compact("data"));
     }
 }

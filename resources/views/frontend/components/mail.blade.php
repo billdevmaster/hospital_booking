@@ -24,7 +24,9 @@
         linki:
     </p>
     <a href="{{ env('APP_URL') }}/cancelBooking?id={{ $data['book_id'] }}">{{ env('APP_URL') }}/cancelBooking?id={{ $data['book_id'] }}</a>
-    <br/><br/>
+    <br/>
+    <p>Enne vastuvõtule pöördumist palume tutuvuda <a href="https://seksuaaltervis.ee/seksuaaltervise-kliinik/patsiendi-meelespea">patsiendi meelespeaga</a></p>
+    <br/>
     <p>Täname!</p>
     <p>Aadress: Mardi 3, Tallinn, </p>
     <p>Telefon: 6665123</p>

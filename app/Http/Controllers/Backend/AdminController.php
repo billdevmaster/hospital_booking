@@ -46,7 +46,9 @@ class AdminController extends Controller
         ];
         $start_date = $request->start_date ? $request->start_date : date("Y-m-d");
         $year = date("M Y", strtotime($start_date));
-        $end_date = date("Y-m-d", strtotime($start_date. ' + 3 days'));
+        $timestamp = strtotime($start_date);
+        $day = date('D', $timestamp);
+        $location_date_start_time = $location[$day . "_start"];
         $pesuboxs = LocationPesuboxs::where("location_id", $request->current_location_id)->where("is_delete", 'N') ->orderByRaw("display_order ASC, id ASC")->get();
         if ($request->search_input && $request->search_input != "") {
             // $orderWithKeyword = Bookings::where("location_id", $request->current_location_id)->where(function($query1) use($request) {
@@ -68,26 +70,30 @@ class AdminController extends Controller
         
         $data = [];
         foreach($orders as $order) {
-            // check pesubox is avaiable.
-            $item = [];
-            $item['uid'] = $order->id;
-            $item['begins'] = $order->date . ' ' . $order->time;
-            $endTime = strtotime("+" . $order->duration . " minutes", strtotime($item['begins']));
-            $item['ends'] = $order->date . ' ' . date('H:i:s', $endTime);
-            $item['color'] = $colors[$order->type];
-            $item['resource'] = "@" . $order->pesubox_id;
-            $item['title'] = substr($order->time, 0, 5) . " " . $order->first_name . " " . $order->last_name;
-            $item['notes'] = "nimi: " . $order->first_name . " " . $order->last_name . "\n" . "sünnikuupäev: " . $order->birth_date . "\n" . "telefon: " . $order->phone . "\n" . "meili: " . $order->email . "\n" . "sõnum: " . $order->message;
-            $item['notes'] .= "\n" . "teenuseid: ";
-            $arr_service = explode(",", $order->service_id);
-            foreach($arr_service as $service_id) {
-                if ($service_id != null) {
-                    $service = Services::find($service_id);
-                    $item['notes'] .= $service->name . ", ";
+            $time_start = explode(':', $order->time);
+            $location_start = explode(':', $location_date_start_time);
+            if (($time_start[0] * 1 * 60 + $time_start[1]) >= ($location_start[0] * 1 * 60 + $location_start[1])) {
+                // check pesubox is avaiable.
+                $item = [];
+                $item['uid'] = $order->id;
+                $item['begins'] = $order->date . ' ' . $order->time;
+                $endTime = strtotime("+" . $order->duration . " minutes", strtotime($item['begins']));
+                $item['ends'] = $order->date . ' ' . date('H:i:s', $endTime);
+                $item['color'] = $colors[$order->type];
+                $item['resource'] = "@" . $order->pesubox_id;
+                $item['title'] = substr($order->time, 0, 5) . " " . $order->first_name . " " . $order->last_name;
+                $item['notes'] = "nimi: " . $order->first_name . " " . $order->last_name . "\n" . "sünnikuupäev: " . $order->birth_date . "\n" . "telefon: " . $order->phone . "\n" . "meili: " . $order->email . "\n" . "sõnum: " . $order->message;
+                $item['notes'] .= "\n" . "teenuseid: ";
+                $arr_service = explode(",", $order->service_id);
+                foreach($arr_service as $service_id) {
+                    if ($service_id != null) {
+                        $service = Services::find($service_id);
+                        $item['notes'] .= $service->name . ", ";
+                    }
                 }
+                // $item['notes'] = "test";
+                $data[] = (object)$item;
             }
-            // $item['notes'] = "test";
-            $data[] = (object)$item;
         }
         // get start time and end time.
         $day = mktime(0, 0, 0, substr($start_date, 5, 2), substr($start_date, 8, 2), substr($start_date, 0, 4));

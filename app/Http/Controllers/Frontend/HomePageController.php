@@ -153,6 +153,7 @@ class HomePageController extends Controller
         $day = date('D', $timestamp);
         $location = Locations::find($location_id);
         $location_date_end_time = $location[$day . "_end"];
+        $location_date_start_time = $location[$day . "_start"];
 
         $data = [];
         $location = $this->getCurrentLocation($location_id);
@@ -168,17 +169,21 @@ class HomePageController extends Controller
             if (count($orders) > 0) {
                 $info['bookings_slots'] = [];
                 foreach($orders as $order) {
-                    $end_time = date('Y-m-d H:i:s', strtotime($order->started_at. ' +' . $order->duration . ' minutes')); 
-                    if ($end_time > $order->date . " " . $location_date_end_time) 
-                        continue;
-                    $order_info = [];
-                    $order_info['id'] = (string) $order->id;
-                    $order_info['slot_duration'] = $order->duration * 1 / $location->interval;
                     $time_start = explode(':', $order->time);
-                    $order_info['slot_start'] = ($time_start[0] * 1 * (60 / $location->interval)) + ($time_start[1] * 1 / $location->interval);
-                    
-                    $order_info['slot_end'] = $order_info['slot_start'] + ($order->duration / $location->interval);
-                    $info['bookings_slots'][] = $order_info;
+                    $location_start = explode(':', $location_date_start_time);
+                    if (($time_start[0] * 1 * 60 + $time_start[1]) >= ($location_start[0] * 1 * 60 + $location_start[1])) {
+                        $end_time = date('Y-m-d H:i:s', strtotime($order->started_at. ' +' . $order->duration . ' minutes')); 
+                        if ($end_time > $order->date . " " . $location_date_end_time) 
+                            continue;
+                        $order_info = [];
+                        $order_info['id'] = (string) $order->id;
+                        $order_info['slot_duration'] = $order->duration * 1 / $location->interval;
+                        
+                        $order_info['slot_start'] = ($time_start[0] * 1 * (60 / $location->interval)) + ($time_start[1] * 1 / $location->interval);
+                        
+                        $order_info['slot_end'] = $order_info['slot_start'] + ($order->duration / $location->interval);
+                        $info['bookings_slots'][] = $order_info;
+                    }
                 }
             }
             $data[] = $info;
@@ -274,7 +279,11 @@ class HomePageController extends Controller
         $ret_data['office']['brn_min_time'] = '240';
         $ret_data['office']['slot_length'] = $location->interval;
         $day = [];
-        $day['date'] = strtotime($request['start_date']) * 1 - 7200;
+        if ($date1 <= date_create("2022-10-30")) {
+            $day['date'] = strtotime($request['start_date']) * 1 - 7200;
+        } else {
+            $day['date'] = strtotime($request['start_date']) * 1 - 3600;
+        }
         $day['openTimes'] = $this->getLocationOpenTimes($request['office'], $request['start_date']);
         $day['resources'] = $this->getLocationPesuboxs($request['office'], $request['start_date']);
         $ret_data['days'][0] = $day;

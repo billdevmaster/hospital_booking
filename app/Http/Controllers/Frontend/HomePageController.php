@@ -279,11 +279,8 @@ class HomePageController extends Controller
         $ret_data['office']['brn_min_time'] = '240';
         $ret_data['office']['slot_length'] = $location->interval;
         $day = [];
-        if ($date1 <= date_create("2022-10-30")) {
-            $day['date'] = strtotime($request['start_date']) * 1 - 7200;
-        } else {
-            $day['date'] = strtotime($request['start_date']) * 1 - 3600;
-        }
+        $day['date'] = strtotime($request['start_date']) * 1 - 7200;
+        
         $day['openTimes'] = $this->getLocationOpenTimes($request['office'], $request['start_date']);
         $day['resources'] = $this->getLocationPesuboxs($request['office'], $request['start_date']);
         $ret_data['days'][0] = $day;

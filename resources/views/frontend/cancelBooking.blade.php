@@ -30,7 +30,7 @@
                 </label>
             </div>
             <div style="text-align: center; margin-top: 20px">
-                <button class="btn">Katkesta</button>
+                <button class="btn">Kinnita</button>
             </div>
         </form>
     </div>

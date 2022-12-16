@@ -30,5 +30,7 @@
     <p>Täname!</p>
     <p>Aadress: Mardi 3, Tallinn, </p>
     <p>Telefon: 6665123</p>
+    <p>NB: Alates 09.01.2023 on uus aadress: T1 keskus, Peterburi tee 2, Tallinn</p>
+
 </body>
 </html>

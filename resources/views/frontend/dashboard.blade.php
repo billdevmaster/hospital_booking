@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-xs-12 col-md-12">
 			<h1>Seksuaaltervise Kliinik</h1>
-            <h3>Mardi 3 Tallinn</h3>
+            <h3>T1 keskus, 3 korrus, Peterburi tee 2, Tallinn</h3>
 		</div>
 	</div>
     <div class="row">

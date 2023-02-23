@@ -110,7 +110,7 @@ class HomePageController extends Controller
         $location_id = $request->office ? $request->office : $locations->id;
         $location = $this->getCurrentLocation($location_id);
         $location_services = $this->getLocationServices($location_id);
-        $location_pesuboxs = LocationPesuboxs::where("location_id", $location_id)->where("status", 1)->get();
+        $location_pesuboxs = LocationPesuboxs::where("location_id", $location_id)->where("is_delete", 'N')->where("status", 1)->get();
         $slots_data = $this->getTimeSlots(date("d"), date("m"), date("Y"), 0, 7, $location_id);
         $usedtime = "none";
         $office = $location_id;

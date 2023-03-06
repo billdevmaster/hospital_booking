@@ -268,10 +268,10 @@ class HomePageController extends Controller
         $date2 = date_create(date('Y-m-d'));
         $diff = (array) date_diff($date1, $date2);
         
-        // if ($diff['days'] > 28) {
-        //     $ret_data['status'] = false;
-        //     return response(json_encode($ret_data));
-        // }
+        if ($diff['days'] > 28) {
+            $ret_data['status'] = false;
+            return response(json_encode($ret_data));
+        }
         $ret_data['office'] = [];
         $ret_data['days'] = [];
         $ret_data['office']['allow_brn_max_time'] = '0';

@@ -169,6 +169,7 @@ class AdminController extends Controller
                     });
                 })
                 ->first();
+                
         } else {
             $order_already = Bookings::where("location_id", $request->location_id)->where('pesubox_id', $request->pesubox_id)->where("is_delete", "N")
                 ->where(function($query1) use($request) {

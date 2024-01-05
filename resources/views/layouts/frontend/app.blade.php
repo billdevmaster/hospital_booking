@@ -216,9 +216,9 @@
         <script>
             var appUrl = '{{ env('APP_URL') }}';
             $(function() {
-                setTimeout(() => {
-                    alert("Alates 9. jaanuarist 2023 võtame patsiente vastu T1 keskuse 3. korrusel!");
-                }, 1000);
+                // setTimeout(() => {
+                //     alert("Alates 9. jaanuarist 2023 võtame patsiente vastu T1 keskuse 3. korrusel!");
+                // }, 1000);
                 $.ajaxSetup({
                     headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

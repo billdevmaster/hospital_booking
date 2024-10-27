@@ -279,8 +279,8 @@ class HomePageController extends Controller
         $ret_data['office']['brn_min_time'] = '240';
         $ret_data['office']['slot_length'] = $location->interval;
         $day = [];
-        if ($date1 <= date_create("2024-03-31")) {
-            $day['date'] = strtotime($request['start_date']) * 1 - 3600;
+        if ($date1 <= date_create("2024-10-27")) {
+            $day['date'] = strtotime($request['start_date']) * 1 - 7200;
         } else {
             $day['date'] = strtotime($request['start_date']) * 1 - 7200;
         }

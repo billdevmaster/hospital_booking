@@ -51,7 +51,7 @@ class HomePageController extends Controller
             ->first();
             if ($order_already != null) {
                 $end_time = date('Y-m-d H:i:s', strtotime($order_already->started_at. ' +' . $order_already->duration . ' minutes')); 
-                if ($end_time <= $order_already->date . " " . $location_date_end_time) 
+                if ($end_time < $order_already->date . " " . $location_date_end_time) 
                     return redirect()->route('errorBooking', ["message" => "Your booking time is already booked"]);
             }
             $booking->location_id = $request->location_id;

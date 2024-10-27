@@ -29,7 +29,7 @@ class HomePageController extends Controller
             $booking = new Bookings();
             // check start time in database already.
             $datetime = substr($request['Bookings']['started_at'], 6, 4) . "-" . substr($request['Bookings']['started_at'], 3, 2) . "-" . substr($request['Bookings']['started_at'], 0, 2) . " " . substr($request['Bookings']['started_at'], 11, 5) . ":00";
-            
+            $duration = $request['duration'] - 60;
             $order_already = Bookings::where('location_id', $request->location_id)->where('pesubox_id', $request['BookingResources']['resource_id'])->where("is_delete", "N")
             ->where(function($query1) use($datetime, $request) {
                 $query1->where(function($query) use($datetime, $request)
@@ -51,7 +51,10 @@ class HomePageController extends Controller
             ->first();
             if ($order_already != null) {
                 $end_time = date('Y-m-d H:i:s', strtotime($order_already->started_at. ' +' . $order_already->duration . ' minutes')); 
-                if ($end_time < $order_already->date . " " . $location_date_end_time) 
+                var_dump($order_already->started_at);
+                var_dump($order_already->id);
+                die();
+                if ($end_time <= $order_already->date . " " . $location_date_end_time) 
                     return redirect()->route('errorBooking', ["message" => "Your booking time is already booked"]);
             }
             $booking->location_id = $request->location_id;
@@ -179,7 +182,7 @@ class HomePageController extends Controller
                         $order_info['id'] = (string) $order->id;
                         $order_info['slot_duration'] = $order->duration * 1 / $location->interval;
                         
-                        $order_info['slot_start'] = ($time_start[0] * 1 * (60 / $location->interval)) + ($time_start[1] * 1 / $location->interval);
+                        $order_info['slot_start'] = ($time_start[0] * 1 * (60 / $location->interval)) + ($time_start[1] * 1 / $location->interval) + (60 / $location->interval);  // ********** check on time update
                         
                         $order_info['slot_end'] = $order_info['slot_start'] + ($order->duration / $location->interval);
                         $info['bookings_slots'][] = $order_info;
@@ -279,7 +282,7 @@ class HomePageController extends Controller
         $ret_data['office']['brn_min_time'] = '240';
         $ret_data['office']['slot_length'] = $location->interval;
         $day = [];
-        if ($date1 <= date_create("2024-10-27")) {
+        if ($date1 <= date_create("2024-10-27")) { // ********** check on time update
             $day['date'] = strtotime($request['start_date']) * 1 - 7200;
         } else {
             $day['date'] = strtotime($request['start_date']) * 1 - 7200;
@@ -300,8 +303,8 @@ class HomePageController extends Controller
         }
         $open_time = [];
         $open_time['id'] = (string) $location['id'];
-        $open_time['slot_start'] = (string) (($time_start[0] * 1 * 60 / $location->interval) + ($time_start[1] * 1 / $location->interval) + (60 / $location->interval));
-        $open_time['slot_end'] = (string) (($time_end[0] * 1 * 60 / $location->interval) + ($time_end[1] * 1 / $location->interval) + (60 / $location->interval));
+        $open_time['slot_start'] = (string) (($time_start[0] * 1 * 60 / $location->interval) + ($time_start[1] * 1 / $location->interval) + (60 / $location->interval)); // ********** check on time update
+        $open_time['slot_end'] = (string) (($time_end[0] * 1 * 60 / $location->interval) + ($time_end[1] * 1 / $location->interval) + (60 / $location->interval)); // ********** check on time update
         return $open_time;
     }
 

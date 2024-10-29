@@ -182,7 +182,8 @@ class HomePageController extends Controller
                         $order_info['id'] = (string) $order->id;
                         $order_info['slot_duration'] = $order->duration * 1 / $location->interval;
                         
-                        $order_info['slot_start'] = ($time_start[0] * 1 * (60 / $location->interval)) + ($time_start[1] * 1 / $location->interval) + (60 / $location->interval);  // ********** check on time update
+                        // $order_info['slot_start'] = ($time_start[0] * 1 * (60 / $location->interval)) + ($time_start[1] * 1 / $location->interval) + (60 / $location->interval);  // ********** check on time update
+                        $order_info['slot_start'] = ($time_start[0] * 1 * (60 / $location->interval)) + ($time_start[1] * 1 / $location->interval);  // ********** check on time update
                         
                         $order_info['slot_end'] = $order_info['slot_start'] + ($order->duration / $location->interval);
                         $info['bookings_slots'][] = $order_info;
@@ -285,7 +286,7 @@ class HomePageController extends Controller
         if ($date1 <= date_create("2024-10-27")) { // ********** check on time update
             $day['date'] = strtotime($request['start_date']) * 1 - 7200;
         } else {
-            $day['date'] = strtotime($request['start_date']) * 1 - 7200;
+            $day['date'] = strtotime($request['start_date']) * 1 - 3600;
         }
         $day['openTimes'] = $this->getLocationOpenTimes($request['office'], $request['start_date']);
         $day['resources'] = $this->getLocationPesuboxs($request['office'], $request['start_date']);
@@ -303,8 +304,10 @@ class HomePageController extends Controller
         }
         $open_time = [];
         $open_time['id'] = (string) $location['id'];
-        $open_time['slot_start'] = (string) (($time_start[0] * 1 * 60 / $location->interval) + ($time_start[1] * 1 / $location->interval) + (60 / $location->interval)); // ********** check on time update
-        $open_time['slot_end'] = (string) (($time_end[0] * 1 * 60 / $location->interval) + ($time_end[1] * 1 / $location->interval) + (60 / $location->interval)); // ********** check on time update
+        // $open_time['slot_start'] = (string) (($time_start[0] * 1 * 60 / $location->interval) + ($time_start[1] * 1 / $location->interval) + (60 / $location->interval)); // ********** check on time update
+        // $open_time['slot_end'] = (string) (($time_end[0] * 1 * 60 / $location->interval) + ($time_end[1] * 1 / $location->interval) + (60 / $location->interval)); // ********** check on time update
+        $open_time['slot_start'] = (string) (($time_start[0] * 1 * 60 / $location->interval) + ($time_start[1] * 1 / $location->interval)); // ********** check on time update
+        $open_time['slot_end'] = (string) (($time_end[0] * 1 * 60 / $location->interval) + ($time_end[1] * 1 / $location->interval)); // ********** check on time update
         return $open_time;
     }
 
